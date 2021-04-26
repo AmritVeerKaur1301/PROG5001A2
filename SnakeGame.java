@@ -1,9 +1,10 @@
 import java.awt.EventQueue;
+import javax.swing.JFrame;
 
 public class SnakeGame extends JFrame {
 
-    public SnakeGame(String gameTille) {        
-        setTitle(gameTille);
+    public SnakeGame() {        
+        setTitle("The Snake Game: Amrit Veer Kaur");
         setResizable(false);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

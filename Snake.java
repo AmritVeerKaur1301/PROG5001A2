@@ -1,8 +1,8 @@
 /**
  * Write a description of class Snake here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @AMRIT VEER KAUR 
+ * @Snakegame 1.0(date - 25-04-2021)
  */
 public class Snake
 {

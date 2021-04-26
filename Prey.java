@@ -1,8 +1,8 @@
 /**
  * Class Prey represents any prey object.
  *
- * @author 
- * @version
+ * @AMRIT VEER KAUR 
+ * @Snakegame 1.0
  */
 public class Prey {
     /**

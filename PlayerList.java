@@ -1,8 +1,8 @@
 /**
  * Write a description of class Player here.
  *
- * @author (your name)
- * @version (a version number or a date)
+ * @author (Amrit Veer Kaur)
+ * @version (25-04-2021)
  */
 import java.util.ArrayList;
 import java.util.Iterator;

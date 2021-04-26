@@ -16,7 +16,7 @@ import java.io.FileNotFoundException;
  
 /**
  * This program demonstrates how to use JFrame and LayoutManager.
- * @author Vinh Bui
+ * @author Amrit Veer Kaur
  */
 
 public class LoginForm extends JFrame implements ActionListener {

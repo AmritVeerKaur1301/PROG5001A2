@@ -3,12 +3,12 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 
-public class GameBoard extends JPanel {    
+public class AVK_GameBoard extends JPanel {    
     int xcells = 30;    
     int ycells = 30;
     int szcell = 10;        
        
-    public GameBoard() {
+    public AVK_GameBoard() {
         setPreferredSize(new Dimension(xcells * szcell, ycells * szcell));        
         setBackground(Color.black);
         setFocusable(true);        

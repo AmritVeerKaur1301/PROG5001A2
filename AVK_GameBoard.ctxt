@@ -2,6 +2,12 @@
 comment0.target=AVK_GameBoard
 comment1.params=
 comment1.target=AVK_GameBoard()
-comment2.params=g
-comment2.target=void\ paintComponent(java.awt.Graphics)
-numComments=3
+comment2.params=
+comment2.target=void\ collision()
+comment2.text=\r\n\ This\ collision\ method\ to\ check\ the\ collsion\ of\ snake\ with\ the\ board\ and\ itself.\r\n
+comment3.params=y
+comment3.target=int\ gameover(int)
+comment3.text=\r\n\ game\ over\ to\ show\ the\ message\ that\ game\ is\ over\ after\ the\ collision\r\n\ @\ return\ message\ to\ display\ that\ game\ is\ over\ \r\n
+comment4.params=g
+comment4.target=void\ paintComponent(java.awt.Graphics)
+numComments=5

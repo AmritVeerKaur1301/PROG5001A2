@@ -3,7 +3,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import javax.swing.JPanel;
 
-public class AVK_GameBoard extends JPanel {    
+public abstract class AVK_GameBoard extends JPanel {    
     int xcells = 30;    
     int ycells = 30;
     int szcell = 10;        
@@ -25,13 +25,14 @@ public class AVK_GameBoard extends JPanel {
 
     /**
      * game over to show the message that game is over after the collision
-     *
+     * @ return message to display that game is over 
      */
-    public void gameover()
+    public int gameover(int y)
     {
         // put your code here
-        
+        return y;
     }
+
 
     @Override
     public void paintComponent(Graphics g) {

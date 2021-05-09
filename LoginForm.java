@@ -89,6 +89,11 @@ public class LoginForm extends JFrame implements ActionListener {
         String password = fieldPassword.getText();
         if (playerList.matchPlayer(username, password)) {
             JOptionPane.showMessageDialog(this, username + ": login successfully");
+             // Create object for the class to run it
+            
+            AVK_SnakeGame game = new AVK_SnakeGame();
+            game.setVisible(true);
+            
         } else {
             JOptionPane.showMessageDialog(this, "wrong username or password");
         }

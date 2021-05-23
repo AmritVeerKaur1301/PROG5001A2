@@ -14,8 +14,8 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
  
-/**
- * This program demonstrates how to use JFrame and LayoutManager.
+/* Login for is created in this class.
+ * After authentication user will be allowed to play Sanke Game 
  * @author Amrit Veer Kaur
  */
 
@@ -75,6 +75,8 @@ public class LoginForm extends JFrame implements ActionListener {
         //add ActionListener to the button
         buttonLogin.addActionListener(this);
         
+    
+        
         //instantiate the playerList
         playerList = new PlayerList();
         try {
@@ -82,23 +84,30 @@ public class LoginForm extends JFrame implements ActionListener {
         } catch (FileNotFoundException e) {
             JOptionPane.showMessageDialog(this, "File Not Found");
         }
+    
     }
     
     public void actionPerformed(ActionEvent e) {
         String username = textUsername.getText();
         String password = fieldPassword.getText();
         if (playerList.matchPlayer(username, password)) {
-            JOptionPane.showMessageDialog(this, username + ": login successfully");
-             // Create object for the class to run it
+            JOptionPane.showMessageDialog(this, username + ": Login Successfull" + "\n" + " PRESS OK AND PLAY");
             
-            AVK_SnakeGame game = new AVK_SnakeGame();
-            game.setVisible(true);
+            // Create object for the clas to run snake game
+    
+            AVK_SnakeGame s = new AVK_SnakeGame();
+            s.setVisible(true);
+            dispose();           // to remove the login form when new snakegame starts.
+           
             
         } else {
             JOptionPane.showMessageDialog(this, "wrong username or password");
+            
         }
 
     }
+    
+     
     
     private void readPlayerFromFile(String fileName) throws FileNotFoundException{
         File file = new File(fileName);
@@ -112,12 +121,14 @@ public class LoginForm extends JFrame implements ActionListener {
             Scanner uscanner = new Scanner(line);
             String username = uscanner.next();
             String password = uscanner.next(); 
+            
             playerList.add(username, password);
             //JOptionPane.showMessageDialog(this, username + ": " + password);
         }      
     }
     
-    public static void main(String[] args) {
+    
+   public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {

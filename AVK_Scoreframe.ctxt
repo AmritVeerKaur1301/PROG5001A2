@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=AVK_Scoreframe
+comment0.text=\r\n\ this\ class\ is\ created\ toadd\ the\ labels\ with\ scores\ and\ to\ restart\ the\ game\ when\ over.\r\n@author\ Amrit\ Veer\ Kaur\ \r\n
+comment1.params=
+comment1.target=AVK_Scoreframe()
+comment2.params=e
+comment2.target=void\ mouseClicked(java.awt.event.MouseEvent)
+numComments=3

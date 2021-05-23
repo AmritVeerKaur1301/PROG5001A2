@@ -1,8 +1,8 @@
 /**
  * Write a description of class Player here.
  *
- * @author (Amrit Veer Kaur)
- * @version (25-04-2021)
+ * @author (your name)
+ * @version (a version number or a date)
  */
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -114,4 +114,5 @@ public class PlayerList
             return this.name.compareTo(p.name);
         }
     }
+
 }

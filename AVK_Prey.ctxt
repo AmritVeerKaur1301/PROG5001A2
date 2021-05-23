@@ -1,0 +1,8 @@
+#BlueJ class context
+comment0.target=AVK_Prey
+comment0.text=\r\n\ this\ class\ is\ used\ to\ upload\ the\ smily\ as\ prey\ for\ the\ game.\r\n\ @author\ Amrit\ Veer\ Kaur\r\n
+comment1.params=
+comment1.target=AVK_Prey()
+comment2.params=g
+comment2.target=void\ paintComponent(java.awt.Graphics)
+numComments=3

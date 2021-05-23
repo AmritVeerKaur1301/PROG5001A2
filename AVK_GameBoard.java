@@ -21,12 +21,12 @@ import javax.swing.Timer;
 
 public class AVK_GameBoard extends JPanel implements ActionListener {
 
-    private final int GB_Width = 300;
-    private final int GB_Hgt = 300;
+    private final int GB_Width = 320;
+    private final int GB_Hgt = 320;
     private final int S_dot = 10;
-    private final int ALL_DOTS = 900;
-    private final int RAND_POS = 29;
-    private final int DELAY = 140;
+    private final int ALL_DOTS = 920;
+    private final int RAND_POS = 28;
+    private final int DELAY = 120;
 
     private final int x[] = new int[ALL_DOTS];
     private final int y[] = new int[ALL_DOTS];

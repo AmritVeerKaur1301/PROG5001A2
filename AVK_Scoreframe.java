@@ -75,7 +75,7 @@ public class AVK_Scoreframe extends JPanel{
          AVK_GameBoard g = new AVK_GameBoard();
          s = g.getscore();
          l = g.snake_length;
-         labelScore.setText(String.valueOf(g.getscore()));
+         //labelScore.setText(String.valueOf(g.getscore()));
          System.out.println("score = "+ s);
          System.out.println("len = "+ l);
          // s = g.score;

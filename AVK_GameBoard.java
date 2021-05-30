@@ -1,3 +1,5 @@
+// https://zetcode.com/javagames/snake// help taken
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
@@ -25,21 +27,21 @@ import java.awt.event.MouseEvent;
 
 public class AVK_GameBoard extends JPanel implements ActionListener {
     
-    private final int GB_Width = 300;
-    private final int GB_Hgt = 400;
-    private final int S_dot = 10;
-    private final int ALL_DOTS = 950;
-    private final int RAND_POS = 28;
-    private final int DELAY = 115;
+    private final int GB_Width = 300;  // width of gameboard class
+    private final int GB_Hgt = 400;    // height of gameboard class
+    private final int Size_stp = 10;   // size of snake tail and prey
+    private final int Total_dotcount = 1200;  // number of dots on board(calculated as (w*h/size_stp*size_stp))
+    private final int Prey_randpos = 28;  // to calculate prey's random position which is constant
+    private final int Game_speed = 115;   // determines the speed of game
 
-    private final int x[] = new int[ALL_DOTS];
-    private final int y[] = new int[ALL_DOTS];
+    private final int s_x[] = new int[Total_dotcount]; // two arrays to store the x & y coordinates
+    private final int s_y[] = new int[Total_dotcount]; // of the joints of snake
 
-     int snake_length;
-    private int prey_x;
-    private int prey_y;
+    int snake_length;
+    private int Prey_x;  
+    private int Prey_y;
     int score = 0;
-    int s;
+    
     
     
     private boolean left_side = false;
@@ -51,8 +53,8 @@ public class AVK_GameBoard extends JPanel implements ActionListener {
     private boolean pauseGame = false;
 
     private Timer timer;
-    private Image snakeb;
-    private Image smily;
+    private Image snakeb;       
+    private Image smily;       
     private Image snakeh;
     
     private JLabel labelgameover;
@@ -66,7 +68,7 @@ public class AVK_GameBoard extends JPanel implements ActionListener {
         setBorder(BorderFactory.createLineBorder(new Color(0,0,0), 1));
         setPreferredSize(new Dimension(GB_Width, GB_Hgt));
         uploadImages();    // to upload the images of snake and prey
-        initGame();
+        initializationphase_of_game(); // to initialize the game
         
         labelgameover = new JLabel("Game Over",JLabel.CENTER);
         labelplay = new JLabel("Click to Play"); 
@@ -88,7 +90,7 @@ public class AVK_GameBoard extends JPanel implements ActionListener {
     }
     
     private void uploadImages() {
-        
+        // to upload the images of the snake and prey on the board
         AVK_Prey prey = new AVK_Prey();  // object of prey class to access images 
         smily = prey.img;
         
@@ -98,18 +100,20 @@ public class AVK_GameBoard extends JPanel implements ActionListener {
 
     }
 
-    private void initGame() {
-
+    private void initializationphase_of_game() {
+        // this methods create the snake on the panel, will locate the prey and 
+        // start the timer for the game
+        
         snake_length = 4;
 
         for (int i = 0; i < snake_length; i++) {
-            x[i] = 50 - i * 10;
-            y[i] = 50;
+            s_x[i] = 50 - i * 10;
+            s_y[i] = 50;
         }
         
-        locatePrey();
+        addPrey();
 
-        timer = new Timer(DELAY, this);
+        timer = new Timer(Game_speed, this);
         timer.start();
     }
 
@@ -124,12 +128,12 @@ public class AVK_GameBoard extends JPanel implements ActionListener {
         
         if (playGame) {
 
-            g.drawImage(smily, prey_x, prey_y, this);
+            g.drawImage(smily, Prey_x, Prey_y, this);
 
             for (int i = 0; i < snake_length; i++) {
                 if (i == 0) {
-                    g.drawImage(snakeh, x[i], y[i], this);
-                } else { g.drawImage(snakeb, x[i], y[i], this);
+                    g.drawImage(snakeh, s_x[i], s_y[i], this);
+                } else { g.drawImage(snakeb, s_x[i], s_y[i], this);
                 }
             }
 
@@ -142,7 +146,8 @@ public class AVK_GameBoard extends JPanel implements ActionListener {
 
     private void gameOver(Graphics g) {
         
-       
+       // when game is over show two options that game is over
+       // 2nd label is to play the game again
         setLayout(new GridLayout(2,1));
         labelplay.setForeground(new Color(255,255,255));
         labelgameover.setForeground(new Color(255,255,255));
@@ -156,73 +161,85 @@ public class AVK_GameBoard extends JPanel implements ActionListener {
          
     }
 
-    public void checkPrey() {
+    public void findPrey() {
+        // when the snake head will hit the prey than the lenth of snake will 
+        // increase and it will give a call to addprey method to add new prey on
+        // random position
         
-        if ((x[0] == prey_x) && (y[0] == prey_y)) {
+        if ((s_x[0] == Prey_x) && (s_y[0] == Prey_y)) {
             
             snake_length++;
             score = score + 1;
+            
             
             System.out.println("Score = " + score);
             System.out.println("length = " + snake_length);
             
             
-            locatePrey();
+            addPrey();
         }
         
     }
 
      public int getscore() {
-        return s;
+        return score;
     }
 
     
-    private void movesnake() {
-
+    private void Movement_of_snake() {
+        // movement of the snake is controled in this method
+        // when the snake is moving towards left of panel value of x is decreasing 
+        // so the position of s_x[3] will change to the s_x[2].
+        // similiarly other positions according to the snake direction. 
+        
         for (int i = snake_length; i > 0; i--) {
-            x[i] = x[(i - 1)];
-            y[i] = y[(i - 1)];
+            s_x[i] = s_x[(i - 1)];
+            s_y[i] = s_y[(i - 1)];    // here the joints are moved to each others position
         }
 
         if (left_side) {
-            x[0] -= S_dot;
+            s_x[0] -= Size_stp;    // it moves the head of snake to the left
         }
 
         if (right_side) {
-            x[0] += S_dot;
+            s_x[0] += Size_stp;
         }
 
         if (up_side) {
-            y[0] -= S_dot;
+            s_y[0] -= Size_stp;
         }
 
         if (down_side) {
-            y[0] += S_dot;
+            s_y[0] += Size_stp;
         }
     }
 
-    private void checkhit() {
-
+    private void on_hit() {
+        // here weare going to check the collision of snake 
+        // both collision with wall of panel and 
+        // collision of snake head with tail.
+        
         for (int i = snake_length; i > 0; i--) {
 
-            if ((i > 4) && (x[0] == x[i]) && (y[0] == y[i])) { // i>4
+            if ((i > 4) && (s_x[0] == s_x[i]) && (s_y[0] == s_y[i])) { 
                 playGame = false;
-            }
+            }      // if the snake hits its joints, any joint with the head
+                   // play false means game is over.
         }
 
-        if (y[0] >= GB_Hgt) {
+        if (s_y[0] >= GB_Hgt) {
+            playGame = false;     // game is over if snake hits the bottom of the board  
+        }
+
+        if (s_y[0] < 0) {
             playGame = false;
         }
 
-        if (y[0] < 0) {
+        if (s_x[0] >= GB_Width) {
             playGame = false;
         }
 
-        if (x[0] >= GB_Width) {
-            playGame = false;
-        }
-
-        if (x[0] < 0) {
+        if (s_x[0] < 0) {
             playGame = false;
         }
         
@@ -231,13 +248,14 @@ public class AVK_GameBoard extends JPanel implements ActionListener {
         }
     }
 
-    private void locatePrey() {
+    private void addPrey() {
+        // this method provides random position to the prey on the board
+        
+        int r = (int) (Math.random() * Prey_randpos);
+        Prey_x = ((r * Size_stp));
 
-        int r = (int) (Math.random() * RAND_POS);
-        prey_x = ((r * S_dot));
-
-        r = (int) (Math.random() * RAND_POS);
-        prey_y = ((r * S_dot));
+        r = (int) (Math.random() * Prey_randpos);
+        Prey_y = ((r * Size_stp));
     }
 
     @Override
@@ -245,9 +263,9 @@ public class AVK_GameBoard extends JPanel implements ActionListener {
 
         if (playGame) {
 
-            checkPrey();
-            checkhit();
-            movesnake();
+            findPrey();
+            on_hit();
+            Movement_of_snake();
         }
 
         repaint();
